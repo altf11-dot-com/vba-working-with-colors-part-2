@@ -4,9 +4,17 @@ Private r As Integer, g As Integer, b As Integer
 Public Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As LongPtr)
 
 Private Sub Init()
-    r = Int(Rnd() * 256)
-    g = Int(Rnd() * 256)
-    b = Int(Rnd() * 256)
+
+    'random beginning numbers
+'    r = Int(Rnd() * 256)
+'    g = Int(Rnd() * 256)
+'    b = Int(Rnd() * 256)
+
+    'begin black
+    r = 255
+    g = 255
+    b = 0
+
 End Sub
 
 
@@ -26,9 +34,9 @@ Sub RGB_Fun()
     n0 = 0
     Do
         n0 = n0 + 1
-        r = r + IIf(r <= 255, 1, 0)
-        g = g + IIf(g <= 255, 1, 0)
-        b = b + IIf(b <= 255, 1, 0)
+        r = r + IIf(r < 255, 1, 0)
+        g = g + IIf(g < 255, 1, 0)
+        b = b + IIf(b < 255, 1, 0)
         If r < 0 Then r = 0
         If g < 0 Then g = 0
         If b < 0 Then b = 0
@@ -40,7 +48,7 @@ Sub RGB_Fun()
         [A4].Value = n0
         DoEvents
         Sleep 20
-        If r = 256 And g = 256 And b = 256 Then n0 = upperLimit
+        If r = 255 And g = 255 And b = 255 Then n0 = upperLimit
     Loop While n0 < upperLimit
     Beep
 End Sub
