@@ -40,6 +40,7 @@ Sub RGB_Fun()
         [A4].Value = n0
         DoEvents
         Sleep 20
+        If r = 256 And g = 256 And b = 256 Then n0 = upperLimit
     Loop While n0 < upperLimit
     Beep
 End Sub
